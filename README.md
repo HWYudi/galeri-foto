@@ -17,8 +17,8 @@ Ikuti langkah-langkah berikut untuk mengatur dan menjalankan proyek:
 
 1. Klon repositori:
    ```
-   git clone [url-repositori]
-   cd [direktori-proyek]
+   git clone https://github.com/HWYudi/website-galeri-foto.git
+   cd website-galeri-foto
    ```
 
 2. Instal dependensi PHP:
