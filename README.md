@@ -16,10 +16,6 @@ Before you begin, ensure you have the following installed on your system:
 Follow these steps to set up and run the project:
 
 1. Clone the repository:
-   ```
-   git clone [repository-url]
-   cd [project-directory]
-   ```
 
 2. Install PHP dependencies:
    ```
@@ -31,34 +27,12 @@ Follow these steps to set up and run the project:
    npm install
    ```
 
-4. Create a copy of the `.env.example` file and rename it to `.env`:
-   ```
-   cp .env.example .env
-   ```
+4.export database to phpmyadmin
+    
 
-5. Generate an application key:
+5.If The App Show Error No application encryption key has been specified. Then Generate an application key:
    ```
    php artisan key:generate
-   ```
-
-6. Configure your database settings in the `.env` file:
-   ```
-   DB_CONNECTION=mysql
-   DB_HOST=127.0.0.1
-   DB_PORT=3306
-   DB_DATABASE=your_database_name
-   DB_USERNAME=your_database_username
-   DB_PASSWORD=your_database_password
-   ```
-
-7. Run database migrations:
-   ```
-   php artisan migrate
-   ```
-
-8. (Optional) If you have a database dump, import it:
-   ```
-   mysql -u your_username -p your_database_name < database_dump.sql
    ```
 
 ## Running the Application
