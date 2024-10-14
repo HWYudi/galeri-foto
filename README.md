@@ -1,70 +1,84 @@
-# Laravel Project
+# Proyek Laravel
 
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Logo Laravel"></a></p>
 
-## Prerequisites
+## Prasyarat
 
-Before you begin, ensure you have the following installed on your system:
+Sebelum memulai, pastikan Anda telah menginstal hal-hal berikut pada sistem Anda:
 
 - PHP (>= 7.3)
 - Composer
-- Node.js and npm
-- MySQL or another database system supported by Laravel
+- Node.js dan npm
+- MySQL atau sistem database lain yang didukung oleh Laravel
 
-## Installation
+## Instalasi
 
-Follow these steps to set up and run the project:
+Ikuti langkah-langkah berikut untuk mengatur dan menjalankan proyek:
 
-1. Clone the repository:
+1. Klon repositori:
+   ```
+   git clone [url-repositori]
+   cd [direktori-proyek]
+   ```
 
-2. Install PHP dependencies:
+2. Instal dependensi PHP:
    ```
    composer install
    ```
 
-3. Install JavaScript dependencies:
+3. Instal dependensi JavaScript:
    ```
    npm install
    ```
 
-4.export database to phpmyadmin
-    
+4. Ekspor database ke phpMyAdmin
 
-5.If The App Show Error No application encryption key has been specified. Then Generate an application key:
+5. Hapus izin penyimpanan agar fitur unggah foto berjalan lancar:
+   ```
+   rmdir public\storage
+   ```
+   Lalu tekan Enter
+
+6. Kemudian masukkan perintah:
+   ```
+   php artisan storage:link
+   ```
+
+7. Jika aplikasi menampilkan error "No application encryption key has been specified", maka generate kunci aplikasi:
    ```
    php artisan key:generate
    ```
 
-## Running the Application
+## Menjalankan Aplikasi
 
-1. Start the Laravel development server:
+1. Mulai server pengembangan Laravel:
    ```
    php artisan serve
    ```
 
-2. In a separate terminal, compile and watch for asset changes:
+2. Di terminal terpisah, kompilasi dan pantau perubahan aset:
    ```
    npm run dev
    ```
 
-3. Open your browser and visit `http://localhost:8000` to view the application.
+3. Buka browser Anda dan kunjungi `http://localhost:8000` untuk melihat aplikasi.
 
-## Additional Information
+## Informasi Tambahan
 
-For more details about Laravel, check out the following resources:
+Untuk informasi lebih lanjut tentang Laravel, lihat sumber daya berikut:
 
-- [Laravel Documentation](https://laravel.com/docs)
+- [Dokumentasi Laravel](https://laravel.com/docs)
 - [Laravel Bootcamp](https://bootcamp.laravel.com)
 - [Laracasts](https://laracasts.com)
 
-## Contributing
+## Kontribusi
 
-Please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct) when contributing to this project.
+Harap tinjau dan patuhi [Kode Etik](https://laravel.com/docs/contributions#code-of-conduct) saat berkontribusi pada proyek ini.
 
-## Security Vulnerabilities
+## Kerentanan Keamanan
 
-If you discover a security vulnerability, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com).
+Jika Anda menemukan kerentanan keamanan, silakan kirim email ke Taylor Otwell melalui [taylor@laravel.com](mailto:taylor@laravel.com).
 
-## License
+## Lisensi
 
-This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Proyek ini adalah perangkat lunak open-source yang dilisensikan di bawah [lisensi MIT](https://opensource.org/licenses/MIT).
