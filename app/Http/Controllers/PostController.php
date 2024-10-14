@@ -23,7 +23,7 @@ class PostController extends Controller
         ->get();
 
     $user = auth()->user();
-    return Inertia::render('Inertia', ['posts' => $posts, 'user' => $user]);
+    return Inertia::render('homePage', ['posts' => $posts, 'user' => $user]);
 }
 
 
@@ -33,7 +33,7 @@ class PostController extends Controller
         return view('homepage', compact('posts'));
     }
 
-    public function inertia()
+    public function homepage()
     {
         $posts = Post::with(['like', 'user', 'comment'])
             ->orderBy('TanggalUnggah')
@@ -41,7 +41,7 @@ class PostController extends Controller
 
         $user = User::where('UserID', auth()->user())->first();
 
-        return Inertia::render('Inertia', [
+        return Inertia::render('homePage', [
             'posts' => $posts,
             'user' => $user
         ]);
@@ -56,12 +56,12 @@ class PostController extends Controller
             })
             ->firstOrFail();
         $user = auth()->user();
-        $userAlbums = $user ? $user->albums : collect();
+        // $userAlbums = $user ? $user->albums : collect();
 
         return Inertia::render('detailPost', [
             'post' => $post,
             'user' => $user,
-            'userAlbums' => $userAlbums
+            // 'userAlbums' => $userAlbums
         ]);
     }
 
@@ -207,6 +207,6 @@ class PostController extends Controller
             })
             ->get();
 
-        return Inertia::render('Inertia', ['posts' => $posts]);
+        return Inertia::render('homePage', ['posts' => $posts]);
     }
 }

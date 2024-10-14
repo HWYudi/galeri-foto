@@ -256,7 +256,8 @@
                             Create a New Post
                         </h3>
                     </div>
-                    <form method="POST" id="postform" action="{{ route('posts.store') }}" class="bg-black" enctype="multipart/form-data">
+                    <form method="POST" id="postform" action="{{ route('posts.store') }}" class="bg-black"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="px-4 py-5 sm:p-6">
                             <div class="flex items-center space-x-4 mb-4">
@@ -265,25 +266,28 @@
                                         class="w-12 h-12 object-cover rounded-full ring-2 ring-blue-500">
                                 @else
                                     <img src="https://www.pngkey.com/png/detail/230-2301779_best-classified-apps-default-user-profile.png"
-                                        alt="" class="w-12 h-12 object-cover rounded-full ring-2 ring-blue-500">
+                                        alt=""
+                                        class="w-12 h-12 object-cover rounded-full ring-2 ring-blue-500">
                                 @endif
                                 <div class="flex-grow">
-                                    <input type="text" id="JudulFoto" name="JudulFoto"
-                                        placeholder="Judul Foto"
+                                    <input type="text" id="JudulFoto" name="JudulFoto" placeholder="Judul Foto"
                                         class="w-full px-3 py-2 text-white bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500"
                                         required>
                                 </div>
                             </div>
                             <div class="mb-4">
-                                <input type="text" name="DeskripsiFoto" id="DeskripsiFoto" placeholder="Deskripsi Foto"
-                                    class="w-full px-3 py-2 text-white bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500" required>
+                                <input type="text" name="DeskripsiFoto" id="DeskripsiFoto"
+                                    placeholder="Deskripsi Foto"
+                                    class="w-full px-3 py-2 text-white bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500"
+                                    required>
                             </div>
                             <div class="mb-4">
                                 <label for="image"
                                     class="flex items-center justify-center w-full h-32 px-4 transition bg-gray-800 border-2 border-gray-700 border-dashed rounded-md appearance-none cursor-pointer hover:border-blue-400 focus:outline-none">
                                     <span class="flex items-center space-x-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-400" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-400"
+                                            fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                            stroke-width="2">
                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                 d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                                         </svg>
@@ -332,8 +336,8 @@
                         </a>
                     </div>
                     @if (auth()->check())
-                    {{-- {{auth()->user()->Username}} --}}
-                        <a href="/profile/{{auth()->user()->Username}}">
+                        {{-- {{auth()->user()->Username}} --}}
+                        <a href="/profile/{{ auth()->user()->Username }}">
                             <img src="{{ asset('storage/' . auth()->user()->image) }}" alt=""
                                 class="w-10 h-10 object-cover rounded-full">
                         </a>

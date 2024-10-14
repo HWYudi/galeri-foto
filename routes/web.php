@@ -36,7 +36,9 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 //for posts
+Route::get('/' , [PostController::class , 'homepage'])->name('home');
 Route::post('/', [PostController::class, 'store'])->name('posts.store')->middleware('checkauth');
+Route::get('/{name}/post/{id}' , [PostController::class , 'detailpost'])->name('detailpost');
 Route::post('/{name}/post/{id}', [PostController::class, 'update'])->middleware('checkauth');
 Route::delete('/{name}/post/{id}', [PostController::class, 'destroy'])->middleware('checkauth');
 
@@ -57,11 +59,9 @@ Route::get('/search', [PostController::class, 'search'])->name('posts.search');
 //for admin
 Route::get('/dashboard/search' , [AdminController::class , 'search'])->middleware('admin');
 
-Route::get('/' , [PostController::class , 'inertia'])->name('home');
 Route::get('/data' , function(){
     return view('data');
 });
-Route::get('/{name}/post/{id}' , [PostController::class , 'detailpost'])->name('detailpost');
 Route::get('/mylikes' , [PostController::class , 'likes'])->name('likes')->middleware('checkauth');
 
 //album
