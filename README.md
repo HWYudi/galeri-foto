@@ -42,7 +42,7 @@ Ikuti langkah-langkah berikut untuk mengatur dan menjalankan proyek:
     ```
     BROADCAST_DRIVER=log
     CACHE_DRIVER=file
-    FILESYSTEM_DISK=local
+    FILESYSTEM_DISK=public
     QUEUE_CONNECTION=sync
     SESSION_DRIVER=file
     SESSION_LIFETIME=120
