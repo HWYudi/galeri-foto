@@ -15,72 +15,96 @@ Sebelum memulai, pastikan Anda telah menginstal hal-hal berikut pada sistem Anda
 Ikuti langkah-langkah berikut untuk mengatur dan menjalankan proyek:
 
 1. Klon repositori:
-   
+   ```
    git clone https://github.com/HWYudi/website-galeri-foto.git
+   ```
+   ```
    cd website-galeri-foto
+   ```
    
 
 2. Salin file .env.example menjadi .env:
-   
+   ```
    cp .env.example .env
+   ```
    
 
 3. Konfigurasikan file .env dengan pengaturan database Anda:
-    
+    ```
     DB_CONNECTION=mysql
     DB_HOST=127.0.0.1
     DB_PORT=3306
     DB_DATABASE=galeri
     DB_USERNAME=root
     DB_PASSWORD=
+    ```
+
+    ```
+    BROADCAST_DRIVER=log
+    CACHE_DRIVER=file
+    FILESYSTEM_DISK=local
+    QUEUE_CONNECTION=sync
+    SESSION_DRIVER=file
+    SESSION_LIFETIME=120
+    ```
     
 
 4. Instal dependensi PHP:
-   
+   ```
    composer install
+   ```
    
 
 5. Generate kunci aplikasi:
-   
+   ```
    php artisan key:generate
+   ```
    
 
 6. Jalankan migrasi database:
-   
+   ```
    php artisan migrate
+   ```
    
 
 7. Instal dependensi JavaScript:
-   
+   ```
    npm install
+   ```
    
 
 8. Kompilasi aset:
-   
+   ```
    npm run dev
+   ```
    
 
 9. Hapus izin penyimpanan agar fitur unggah foto berjalan lancar:
-   
+   ```
    rmdir public\storage
+   ```
    
    Lalu tekan Enter
 
-10. Buat symlink untuk penyimpanan:
-    
+10. Buat symbloic link untuk penyimpanan:
+    ```
     php artisan storage:link
+    ```
     
 
 ## Menjalankan Aplikasi
 
 1. Mulai server pengembangan Laravel:
-   
+   ```
    php artisan serve
+   ```
    
 
 2. Di terminal terpisah, pantau perubahan aset:
-   
+
+   ```
    npm run watch
+   ```
    
 
 3. Buka browser Anda dan kunjungi http://localhost:8000 untuk melihat aplikasi.
