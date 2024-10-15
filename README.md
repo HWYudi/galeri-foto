@@ -16,10 +16,10 @@ Ikuti langkah-langkah berikut untuk mengatur dan menjalankan proyek:
 
 1. Klon repositori:
    ```
-   git clone https://github.com/HWYudi/website-galeri-foto.git
+   git clone https://github.com/HWYudi/galeri-foto.git
    ```
    ```
-   cd website-galeri-foto
+   cd galeri-foto
    ```
    
 
