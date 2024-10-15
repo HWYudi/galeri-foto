@@ -27,9 +27,11 @@ Ikuti langkah-langkah berikut untuk mengatur dan menjalankan proyek:
    ```
    cp .env.example .env
    ```
+
+3.Export file sql
    
 
-3. Konfigurasikan file .env dengan pengaturan database Anda:
+4. Konfigurasikan file .env dengan pengaturan database Anda:
     ```
     DB_CONNECTION=mysql
     DB_HOST=127.0.0.1
@@ -49,21 +51,15 @@ Ikuti langkah-langkah berikut untuk mengatur dan menjalankan proyek:
     ```
     
 
-4. Instal dependensi PHP:
+5. Instal dependensi PHP:
    ```
    composer install
    ```
    
 
-5. Generate kunci aplikasi:
+6. Generate kunci aplikasi:
    ```
    php artisan key:generate
-   ```
-   
-
-6. Jalankan migrasi database:
-   ```
-   php artisan migrate
    ```
    
 
@@ -72,21 +68,16 @@ Ikuti langkah-langkah berikut untuk mengatur dan menjalankan proyek:
    npm install
    ```
    
-
-8. Kompilasi aset:
-   ```
-   npm run dev
-   ```
    
 
-9. Hapus izin penyimpanan agar fitur unggah foto berjalan lancar:
+8. Hapus izin penyimpanan agar fitur unggah foto berjalan lancar:
    ```
    rmdir public\storage
    ```
    
    Lalu tekan Enter
 
-10. Buat symbloic link untuk penyimpanan:
+9. Buat symbloic link untuk penyimpanan:
     ```
     php artisan storage:link
     ```
@@ -103,7 +94,7 @@ Ikuti langkah-langkah berikut untuk mengatur dan menjalankan proyek:
 2. Di terminal terpisah, pantau perubahan aset:
 
    ```
-   npm run watch
+   npm run dev
    ```
    
 
