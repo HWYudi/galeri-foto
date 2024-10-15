@@ -104,9 +104,7 @@ export default function Profile({ user, auth_user }) {
                             </p>
                         </div>
                     </div>
-                    <p className="break-words whitespace-normal break-all font-light text-sm text-white text-opacity-50">
-                        {user.bio ? user.bio : "No bio Yet ."}
-                    </p>
+                 
                 </div>
             </div>
             <div className="border-t border-white border-opacity-25 grid grid-cols-3 gap-1 px-1 lg:px-10 py-4 lg:py-5">

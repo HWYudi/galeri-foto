@@ -65,7 +65,7 @@ public function detail($id) {
         ->with(['like', 'user', 'comment.user', 'album'])
         ->get();
 
-    return Inertia::render('Inertia', [
+    return Inertia::render('homePage', [
         'posts' => $posts,
         'album' => $album, // Optionally pass the album details
     ]);

@@ -61,8 +61,8 @@
                     <span>Data Foto</span>
                 </a>
 
-                <a href="/admin/manage-albums"
-                class="flex items-center gap-2 py-2 px-1 text-sm hover:text-white hover:bg-[#2424] @if (Route::currentRouteName() == 'data.foto') bg-[#2424] @endif rounded-lg">
+                <a href="/admin/album"
+                class="flex items-center gap-2 py-2 px-1 text-sm hover:text-white hover:bg-[#2424] @if (Route::currentRouteName() == 'admin.manage.albums') bg-[#2424] @endif rounded-lg">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                     class="bi bi-card-image" viewBox="0 0 16 16">
                     <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />

@@ -21,13 +21,19 @@
                     @csrf
                     <div class="mb-4">
                         <label for="NamaAlbum" class="block text-sm font-medium text-gray-700">Nama Album</label>
-                        <input type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" id="NamaAlbum" name="NamaAlbum" required>
+                        <input type="text"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                            id="NamaAlbum" name="NamaAlbum" required>
                     </div>
                     <div class="mb-4">
                         <label for="Deskripsi" class="block text-sm font-medium text-gray-700">Deskripsi</label>
-                        <textarea class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" id="Deskripsi" name="Deskripsi"></textarea>
+                        <textarea
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                            id="Deskripsi" name="Deskripsi"></textarea>
                     </div>
-                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Tambah Album</button>
+                    <button type="submit"
+                        class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Tambah
+                        Album</button>
                 </form>
             </div>
 
@@ -40,7 +46,7 @@
                                 <table class="min-w-full">
                                     <thead class="border-b rounded-t-lg text-left">
                                         <tr>
-                                            <th scope="col" class="rounded-tl-lg text-sm font-medium px-6 py-4">ID</th>
+                                            <th scope="col" class="rounded-tl-lg text-sm font-medium px-6 py-4">NO</th>
                                             <th scope="col" class="text-sm font-medium px-6 py-4">NAMA ALBUM</th>
                                             <th scope="col" class="text-sm font-medium px-6 py-4">DESKRIPSI</th>
                                             <th scope="col" class="text-sm font-medium px-6 py-4">TANGGAL DIBUAT</th>
@@ -50,37 +56,46 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {{-- {{json_encode($albums)}} --}}
                                         @foreach ($albums as $album)
                                             <tr class="border-b even:bg-gray-100 odd:bg-white">
-                                                <td class="text-sm font-normal px-6 py-4 whitespace-nowrap text-left text-gray-500">
-                                                    {{ $album->AlbumID }}
+                                                <td
+                                                    class="text-sm font-normal px-6 py-4 whitespace-nowrap text-left text-gray-500">
+                                                    {{ $loop->iteration }}
                                                 </td>
-                                                <td class="text-sm font-normal px-6 py-4 whitespace-nowrap text-left text-gray-500">
+                                                <td
+                                                    class="text-sm font-normal px-6 py-4 whitespace-nowrap text-left text-gray-500">
                                                     {{ $album->NamaAlbum }}
                                                 </td>
-                                                <td class="text-sm font-normal px-6 py-4 whitespace-nowrap text-left text-gray-500">
+                                                <td
+                                                    class="text-sm font-normal px-6 py-4 whitespace-nowrap text-left text-gray-500">
                                                     {{ $album->Deskripsi }}
                                                 </td>
-                                                <td class="text-sm font-normal px-6 py-4 whitespace-nowrap text-left text-gray-500">
+                                                <td
+                                                    class="text-sm font-normal px-6 py-4 whitespace-nowrap text-left text-gray-500">
                                                     {{ $album->TanggalDibuat }}
                                                 </td>
-                                                <td class="text-sm font-normal px-6 py-4 whitespace-nowrap text-left text-gray-500">
-                                                    {{ $album->user->Username }}
+                                                <td
+                                                    class="text-sm font-normal px-6 py-4 whitespace-nowrap text-left text-gray-500">
+                                                    <div class="flex gap-1 items-center">
+                                                        @if ($album->user->Image)
+                                                            <img src="{{ asset('storage/' . $album->user->Image) }}"
+                                                                alt="" class="w-10 h-10 object-cover rounded-full">
+                                                        @else
+                                                            <img src="{{ asset('images/user.png') }}" alt=""
+                                                                class="w-10 h-10 object-cover rounded-full">
+                                                        @endif
+                                                        {{ $album->user->NamaLengkap }}
+                                                    </div>
                                                 </td>
-                                                <td class="text-sm font-normal px-6 py-4 whitespace-nowrap text-left text-gray-500">
+                                                <td
+                                                    class="text-sm font-normal px-6 py-4 whitespace-nowrap text-left text-gray-500">
                                                     {{ count($album->post) }}
                                                 </td>
                                                 <td class="text-sm font-normal px-6 py-4 whitespace-nowrap text-left">
                                                     <a href="{{ route('admin.edit.album', $album->AlbumID) }}"
                                                         class="text-blue-500 hover:text-blue-700">Edit</a>
-                                                    <form action="{{ route('admin.destroy.album', $album->AlbumID) }}" method="POST"
-                                                        class="inline-block ml-2">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="text-red-500 hover:text-red-700"
-                                                            onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
-                                                    </form>
+                                                    <button onclick="confirmDelete('{{ $album->AlbumID }}')"
+                                                        class="text-red-500 hover:text-red-700 ml-2">Hapus</button>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -92,7 +107,8 @@
                 </div>
             </div>
             @if (Request::has('search'))
-                <a href="{{ route('admin.manage.albums') }}" class="text-blue-500 hover:text-blue-600 hover:underline">Back To List?</a>
+                <a href="{{ route('admin.manage.albums') }}" class="text-blue-500 hover:text-blue-600 hover:underline">Back
+                    To List?</a>
             @endif
             <!-- Pagination Links -->
             <div class="mt-4">
@@ -100,4 +116,36 @@
             </div>
         </section>
     </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden items-center justify-center">
+        <div class="bg-white p-8 rounded-lg shadow-xl">
+            <h2 class="text-xl font-bold mb-4">Konfirmasi Penghapusan</h2>
+            <p class="mb-4">Apakah Anda yakin ingin menghapus album ini?</p>
+            <div class="flex justify-end">
+                <button onclick="closeModal()" class="px-4 py-2 bg-gray-300 text-gray-800 rounded-md mr-2">Batal</button>
+                <form id="deleteForm" method="POST" class="inline-block">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="px-4 py-2 bg-red-500 text-white rounded-md">Hapus</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function confirmDelete(albumId) {
+            const modal = document.getElementById('deleteModal');
+            const deleteForm = document.getElementById('deleteForm');
+            deleteForm.action = `{{ route('admin.destroy.album', '') }}/${albumId}`;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('deleteModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+    </script>
 @endsection

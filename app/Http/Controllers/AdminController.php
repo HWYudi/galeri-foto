@@ -19,7 +19,7 @@ class AdminController extends Controller
     public function search(Request $request)
     {
         $search = $request->input('search');
-        $users = User::where('Username', 'like', '%' . $search . '%')->paginate(10);
+        $users = User::where('Username', 'like', '%' . $search . '%')->orwhere('NamaLengkap', 'like', '%' . $search . '%')->orwhere('email', 'like', '%' . $search . '%')->orwhere('level' , $search)->paginate(10);
         return view('admin.dashboard', compact('users'));
     }
 
@@ -93,8 +93,8 @@ class AdminController extends Controller
     public function searchpost(Request $request)
     {
         $search = $request->input('search');
-        $posts = Post::where('title', 'like', '%' . $search . '%')->orwhere('id', $search)->orwherehas('user', function ($query) use ($search) {
-            $query->where('name', 'like', '%' . $search . '%');
+        $posts = Post::where('JudulFoto', 'like', '%' . $search . '%')->orwhere('DeskripsiFoto', 'like', '%' . $search . '%')->orwherehas('user', function ($query) use ($search) {
+            $query->where('NamaLengkap', 'like', '%' . $search . '%');
         })->paginate(5);
         return view('admin.datafoto', compact('posts'));
     }
@@ -106,13 +106,15 @@ class AdminController extends Controller
         $query = Album::with('user'); // Tambahkan 'with' untuk memuat relasi dengan user
 
         if ($search) {
-            $query->where(function($q) use ($search) {
+            $query->where(function ($q) use ($search) {
                 $q->where('NamaAlbum', 'like', '%' . $search . '%')
-                  ->orWhere('Deskripsi', 'like', '%' . $search . '%');
+                    ->orWhere('Deskripsi', 'like', '%' . $search . '%')->orWhereHas('user', function ($query) use ($search) {
+                        $query->where('NamaLengkap', 'like', '%' . $search . '%');
+                    });
             });
         }
 
-        $albums = $query->latest('TanggalDibuat')->paginate(10);
+        $albums = $query->orderBy('TanggalDibuat', 'asc')->paginate(10);
 
         if ($request->ajax()) {
             return view('admin.album-list', compact('albums'))->render();

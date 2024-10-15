@@ -68,10 +68,7 @@
                         <p class="absolute text-xs text-red-500 mt-1">{{ $message }}</p>
                     @enderror
                 </div>
-                <div class="flex items-center mb-4">
-                    <input type="checkbox" name="remember" id="remember" class="mr-2">
-                    <label for="remember" class="text-sm">Remember me</label>
-                </div>
+                
                 <button type="submit" class="w-full p-2 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700 transition duration-300">Login</button>
                 <div class="mt-4 text-center">
                     <a href="{{ route('register') }}" class="text-sm text-blue-400 hover:underline">Don't have an account? Register</a>

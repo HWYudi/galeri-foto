@@ -21,7 +21,7 @@
                                 <table class="min-w-full">
                                     <thead class="border-b rounded-t-lg text-left">
                                         <tr>
-                                            <th class="rounded-tl-lg text-sm font-medium px-6 py-4">ID</th>
+                                            <th class="rounded-tl-lg text-sm font-medium px-6 py-4">NO</th>
                                             <th class="text-sm font-medium px-6 py-4">USER</th>
                                             <th class="text-sm font-medium px-6 py-4">TITLE</th>
                                             <th class="text-sm font-medium px-6 py-4">DESCRIPTION</th>
@@ -30,55 +30,57 @@
                                             <th class="text-sm font-medium px-6 py-4">ACTION</th>
                                         </tr>
                                     </thead>
-                                    @foreach ($posts as $post)
-                                        <tbody>
-                                            <tr class="border-b even:bg-gray-100 odd:bg-white">
-                                                <td class="text-sm font-medium px-6 py-4 whitespace-nowrap text-left">
-                                                    {{ $post['FotoID'] }}</td>
-                                                <td class="text-sm font-medium px-6 py-4 whitespace-nowrap text-left">
-                                                    <div class="flex items-center gap-2">
-                                                        @if ($post['user']['Image'])
-                                                            <img src="{{ asset('storage/' . $post['user']['Image']) }}"
-                                                                alt="{{ $post['user']['NamaLengkap'] }}"
-                                                                class="w-10 h-10 object-cover rounded-full">
-                                                        @endif
-                                                        <h1>
-                                                            {{ $post['user']['NamaLengkap'] }}
-                                                        </h1>
-                                                    </div>
-                                                </td>
-                                                <td class="text-sm font-medium px-6 py-4 whitespace-nowrap text-left"
-                                                    scope="row">
-                                                    {{ $post['JudulFoto'] }}
-                                                </td>
-                                                <td class="text-sm font-medium px-6 py-4 whitespace-nowrap text-left">
-                                                    {{ $post['DeskripsiFoto'] }}
-                                                </td>
-                                                <td class="text-sm font-normal px-6 py-4 whitespace-nowrap text-left">
-                                                    <img src="{{ asset('storage/' . $post['LokasiFile']) }}"
-                                                        alt="{{ $post['JudulFoto'] }}"
-                                                        class="w-20 h-20 object-cover rounded-lg">
-                                                </td>
-                                                <td class="text-sm font-normal px-6 py-4 whitespace-nowrap text-left text-gray-500">
-                                                    {{ \Carbon\Carbon::parse($post['TanggalUnggah'])->format('Y-m-d') }}
-                                                </td>
-                                                <td class="text-sm font-normal py-4 whitespace-nowrap text-left">
-                                                    <div class="flex items-center gap-2">
-                                                        <a href="/admin/foto/{{ $post['FotoID'] }}/edit"
-                                                            class="bg-blue-500 hover:bg-blue-700 text-white rounded-lg px-4 py-2">
-                                                            Edit
-                                                        </a>
-                                                        <form action="/admin/foto/{{ $post['FotoID'] }}" method="POST">
-                                                            @csrf
-                                                            @method('delete')
-                                                            <button type="submit"
-                                                                class="delete-btn bg-red-500 hover:bg-red-700 text-white rounded-lg px-4 py-2">Delete</button>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    @endforeach
+                                    {{-- {{json_encode($posts)}} --}}
+                                    @foreach ($posts as $index => $post)
+                                    <tbody>
+                                        <tr class="border-b even:bg-gray-100 odd:bg-white">
+                                            <td class="text-sm font-medium px-6 py-4 whitespace-nowrap text-left">
+                                                {{ ($posts->currentPage() - 1) * $posts->perPage() + $index + 1 }}
+                                            </td>
+                                            <td class="text-sm font-medium px-6 py-4 whitespace-nowrap text-left">
+                                                <div class="flex items-center gap-2">
+                                                    @if ($post['user']['Image'])
+                                                        <img src="{{ asset('storage/' . $post['user']['Image']) }}"
+                                                            alt="{{ $post['user']['NamaLengkap'] }}"
+                                                            class="w-10 h-10 object-cover rounded-full">
+                                                    @endif
+                                                    <h1>
+                                                        {{ $post['user']['NamaLengkap'] }}
+                                                    </h1>
+                                                </div>
+                                            </td>
+                                            <td class="text-sm font-medium px-6 py-4 whitespace-nowrap text-left" scope="row">
+                                                {{ $post['JudulFoto'] }}
+                                            </td>
+                                            <td class="text-sm font-medium px-6 py-4 whitespace-nowrap text-left">
+                                                {{ $post['DeskripsiFoto'] }}
+                                            </td>
+                                            <td class="text-sm font-normal px-6 py-4 whitespace-nowrap text-left">
+                                                <img src="{{ asset('storage/' . $post['LokasiFile']) }}"
+                                                    alt="{{ $post['JudulFoto'] }}"
+                                                    class="w-20 h-20 object-cover rounded-lg">
+                                            </td>
+                                            <td class="text-sm font-normal px-6 py-4 whitespace-nowrap text-left text-gray-500">
+                                                {{ \Carbon\Carbon::parse($post['TanggalUnggah'])->format('Y-m-d') }}
+                                            </td>
+                                            <td class="text-sm font-normal py-4 whitespace-nowrap text-left">
+                                                <div class="flex items-center gap-2">
+                                                    <a href="/admin/foto/{{ $post['FotoID'] }}/edit"
+                                                        class="bg-blue-500 hover:bg-blue-700 text-white rounded-lg px-4 py-2">
+                                                        Edit
+                                                    </a>
+                                                    <form action="/admin/foto/{{ $post['FotoID'] }}" method="POST">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="submit"
+                                                            class="delete-btn bg-red-500 hover:bg-red-700 text-white rounded-lg px-4 py-2">Delete</button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                @endforeach
+
                                 </table>
                             </div>
                         </div>

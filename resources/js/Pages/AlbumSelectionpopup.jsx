@@ -119,7 +119,7 @@ const AlbumSelectionPopup = ({ onClose, post, setIsAlbumPopupOpen }) => {
                     )}
                     <div className="mb-4">
                         <div className="flex items-center">
-                            <img src={post.user.image ? "/storage/" + post.user.image : "https://www.pngkey.com/png/detail/230-2301779_best-classified-apps-default-user-profile.png"} alt="" className="w-8 h-8 object-cover rounded-full mr-2"/>
+                            <img src={post.user.Image ? "/storage/" + post.user.Image : "https://www.pngkey.com/png/detail/230-2301779_best-classified-apps-default-user-profile.png"} alt="" className="w-8 h-8 object-cover rounded-full mr-2"/>
                             <h1 className="text-black">{post.user.Username}</h1>
                         </div>
                     </div>

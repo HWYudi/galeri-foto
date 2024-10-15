@@ -15,11 +15,11 @@ class PostController extends Controller
     public function likes()
 {
     $posts = Post::with(['like', 'user', 'comment'])
-        ->whereHas('like', function ($query) {
-            // Adjust the column name here
-            $query->where('UserID', auth()->id()); // Use 'UserID' instead of 'user_id'
-        })
-        ->orderby('TanggalUnggah')
+        ->join('likefoto', 'foto.FotoID', '=', 'likefoto.FotoID')
+        ->where('likefoto.UserID', auth()->id())
+        ->orderBy('likefoto.LikeID', 'desc')
+        ->select('foto.*')  // Memastikan hanya kolom dari tabel foto yang diambil
+        ->distinct()  // Menghindari duplikasi jika ada multiple likes
         ->get();
 
     $user = auth()->user();
@@ -36,7 +36,7 @@ class PostController extends Controller
     public function homepage()
     {
         $posts = Post::with(['like', 'user', 'comment'])
-            ->orderBy('TanggalUnggah')
+            ->orderBy('FotoID', 'desc')
             ->get();
 
         $user = User::where('UserID', auth()->user())->first();
@@ -85,7 +85,7 @@ class PostController extends Controller
     {
         $request->validate([
             'JudulFoto' => 'required',
-            'LokasiFile' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'LokasiFile' => 'required|image|mimes:jpeg,png,jpg,gif',
             'DeskripsiFoto' => 'required',
         ], [
             'JudulFoto.required' => 'Judul Foto harus diisi.',

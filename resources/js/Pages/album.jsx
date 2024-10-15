@@ -8,6 +8,9 @@ const AlbumGallery = ({ albums }) => {
       <Head>
         <title>GO GALLERY ALBUM</title>
       </Head>
+      {albums && albums.length > 0 ? (
+
+
       <div className="p-4 w-full grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
         {albums.map((album) => (
           <div key={album.AlbumID} className="relative overflow-hidden rounded-lg aspect-square">
@@ -37,6 +40,14 @@ const AlbumGallery = ({ albums }) => {
           </div>
         ))}
       </div>
+       ) : (
+        <div className="flex flex-col items-center justify-center h-64">
+        <p className="text-xl text-gray-400">No Posts Found</p>
+        <p className="text-sm text-gray-500 mt-2">
+          It looks like there are no posts available at the moment. Please check back later.
+        </p>
+      </div>
+       )}
     </div>
   );
 };
@@ -44,4 +55,3 @@ const AlbumGallery = ({ albums }) => {
 export default function Album({ albums }) {
   return <AlbumGallery albums={albums} />;
 }
-  

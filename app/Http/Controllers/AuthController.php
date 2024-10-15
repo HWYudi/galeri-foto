@@ -122,37 +122,29 @@ class AuthController extends Controller
 
     public function update(Request $request, $id)
     {
-        $user = User::findOrFail($id); // Use findOrFail for safety
+        $user = User::findOrFail($id);
 
-        // Validate input
         $request->validate([
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'username' => 'required|string|min:3|max:24',
-            'email' => 'required|email|max:255', // Validate email
-            'namaLengkap' => 'nullable|max:150', // Validate NamaLengkap
-            'alamat' => 'nullable|max:255', // Validate Alamat
+            'email' => 'required|email|max:255',
+            'namaLengkap' => 'nullable|max:150',
+            'alamat' => 'nullable|max:255',
         ]);
 
-        // Handle image upload if provided
         if ($request->hasFile('image')) {
-            // Delete old image if it exists
-            if ($user->image) {
-                Storage::delete($user->image);
+            if ($user->Image) {
+                Storage::delete($user->Image);
             }
-            // Store new image and get the path
             $imagePath = $request->file('image')->store('avatar');
-        } else {
-            // Retain existing image if no new one is uploaded
-            $imagePath = $user->image;
+            $user->Image = $imagePath;
         }
 
-        // Update user data
-        $user->Username = $request->input('username'); // Update Username
-        $user->Email = $request->input('email'); // Update Email
-        $user->NamaLengkap = $request->input('namaLengkap'); // Update NamaLengkap
-        $user->Alamat = $request->input('alamat'); // Update Alamat
-        $user->Image = $imagePath; // Update image path
-        $user->save(); // Save changes
+        $user->Username = $request->input('username');
+        $user->Email = $request->input('email');
+        $user->NamaLengkap = $request->input('namaLengkap');
+        $user->Alamat = $request->input('alamat');
+        $user->save();
 
         return redirect()->route('profile', ['name' => $user->Username])->with('success', 'Profil berhasil diperbarui');
     }
@@ -165,20 +157,5 @@ class AuthController extends Controller
         return view('user', compact('users'));
     }
 
-    public function follow($name)
-    {
-        $user = User::where('name', $name)->firstOrFail();
-        Follow::create([
-            'follower_id' => auth()->id(),
-            'following_id' => $user->id
-        ]);
-        return back();
-    }
 
-    public function unfollow($name)
-    {
-        $user = User::where('name', $name)->firstOrFail();
-        Follow::where('follower_id', auth()->id())->where('following_id', $user->id)->delete();
-        return back();
-    }
 }

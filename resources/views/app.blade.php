@@ -197,7 +197,7 @@
                     </div>
                     <div>
                         @if (auth()->check())
-                            <p class="font-semibold text-base">{{ auth()->user()->Username }}</p>
+                            <p class="font-semibold text-base">{{ auth()->user()->NamaLengkap }}</p>
                             <p class="text-sm font-thin">@ {{ auth()->user()->Username }}</p>
                         @else
                             <a href="{{ route('login') }}"
@@ -261,8 +261,8 @@
                         @csrf
                         <div class="px-4 py-5 sm:p-6">
                             <div class="flex items-center space-x-4 mb-4">
-                                @if (auth()->check() && !empty(auth()->user()->image))
-                                    <img src="{{ asset('storage/' . auth()->user()->image) }}" alt=""
+                                @if (auth()->check() && !empty(auth()->user()->Image))
+                                    <img src="{{ asset('storage/' . auth()->user()->Image) }}" alt=""
                                         class="w-12 h-12 object-cover rounded-full ring-2 ring-blue-500">
                                 @else
                                     <img src="https://www.pngkey.com/png/detail/230-2301779_best-classified-apps-default-user-profile.png"
@@ -427,6 +427,12 @@
     function Openbar() {
         document.querySelector('.sidebar').classList.toggle('-translate-x-full');
         document.getElementById('div').classList.toggle('ml-80')
+        const elements = document.querySelectorAll('#gridcard');
+
+        // Loop melalui setiap elemen dan hapus kelas 'xl:grid-cols-4'
+        elements.forEach((element) => {
+            element.classList.toggle('xl:grid-cols-4');
+        });
     }
 
     function searchbar() {

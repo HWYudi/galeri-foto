@@ -51,8 +51,6 @@ Route::post('/reply', [CommentController::class, 'reply'])->middleware('checkaut
 //for profile
 Route::get('/profile/{name}', [AuthController::class, 'profile'])->name('profile')->middleware('checkauth');
 Route::get('/account/edit', [AuthController::class, 'edit'])->name('profile.edit')->middleware('checkauth');
-Route::post('/profile/{name}' , [AuthController::class , 'follow'])->middleware('checkauth');
-Route::delete('/profile/{name}' , [AuthController::class , 'unfollow'])->middleware('checkauth');
 Route::post('/account/edit/{id}', [AuthController::class, 'update']);
 Route::get('/search', [PostController::class, 'search'])->name('posts.search');
 
@@ -79,8 +77,8 @@ Route::get('/admin/foto/{id}/edit', [AdminController::class, 'edit'])->name('dat
 Route::put('/admin/foto/{id}', [AdminController::class, 'update'])->name('data.foto.update');
 
 Route::prefix('admin')->middleware('admin')->group(function () {
-    Route::get('/manage-albums', [AdminController::class, 'manageAlbums'])->name('admin.manage.albums');
-    Route::get('/admin/album', [AdminController::class, 'manageAlbums'])->name('admin.manage.albums');
+    // Route::get('/manage-albums', [AdminController::class, 'manageAlbums'])->name('admin.manage.albums');
+    Route::get('/album', [AdminController::class, 'manageAlbums'])->name('admin.manage.albums');
     Route::post('/manage-albums', [AdminController::class, 'storeAlbum'])->name('admin.store.album');
     Route::get('/manage-albums/{id}/edit', [AdminController::class, 'editAlbum'])->name('admin.edit.album');
     Route::put('/manage-albums/{id}', [AdminController::class, 'updateAlbum'])->name('admin.update.album');
