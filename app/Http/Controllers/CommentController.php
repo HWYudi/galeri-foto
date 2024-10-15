@@ -26,17 +26,17 @@ class CommentController extends Controller
 }
 
 
-    public function reply(Request $request){
-        $request->validate([
-            'body' => 'required',
-        ]);
+    // public function reply(Request $request){
+    //     $request->validate([
+    //         'body' => 'required',
+    //     ]);
 
-        Reply::create([
-            'comment_id' => $request->comment_id,
-            'user_id' => auth()->user()->id,
-            'body' => $request->body
-        ]);
+    //     Reply::create([
+    //         'comment_id' => $request->comment_id,
+    //         'user_id' => auth()->user()->id,
+    //         'body' => $request->body
+    //     ]);
 
-        return back();
-    }
+    //     return back();
+    // }
 }
